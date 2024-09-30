@@ -44,9 +44,9 @@ Here is an example of how to use the SDK:
 ```
 const CampusApiClient = require('campus-api-client-javascript');
 
-const client = new CampusApiClient({ apiKey: 'YOUR_API_KEY' });
+const client = new CampusApiClient(clientId, clientSecret, tenantId, campusApiUrl);
 
-client.getObservations()
+client.getObservations(sensorId, startTime, endTime, brickScheemaSensorType )
   .then(observations => {
     console.log(observations);
   })
@@ -55,7 +55,7 @@ client.getObservations()
   });
   ```
 ## Environment Variables
-To keep your credentials secure, you should store them in a .env file in the root of your project. Here is an example of what your .env file should look like:
+To keep your credentials secure, you should store them in a .env file in the root of your project. See [.env_template](./.env_template) for example
 ```
 CLIENT_ID=your-client-id
 CLIENT_SECRET=your-client-secret
@@ -63,28 +63,7 @@ TENANT_ID=your-tenant-id
 ```
 
 ## Running from Command Line
-To run the SDK from the command line, create a file named index.js with the following content:
-```
-require('dotenv').config();
-const ApiClient = require('./sdk');
-
-const clientId = process.env.CLIENT_ID;
-const clientSecret = process.env.CLIENT_SECRET;
-const tenantId = process.env.TENANT_ID;
-
-const apiClient = new ApiClient(clientId, clientSecret, tenantId);
-
-async function main() {
-    try {
-        const observations = await apiClient.getObservations('Sensor-1234', '2024-04-13T06:48:06+0200', '2024-04-14T06:48:06+0200', 'CO2_SENSOR');
-        console.log('Observations:', observations);
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-main();
-```
+To run the SDK from the command line, edit the [index.js](index.js) .
 
 Then, run the following command in your terminal:
 ```
@@ -93,5 +72,6 @@ node index.js
 
 ## Error Handling
 The SDK includes basic error handling. If authentication fails or fetching observations fails, an error message will be logged to the console.  
-License
+
+## License
 This project is licensed under the Apache 2.0 License.
