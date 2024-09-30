@@ -54,6 +54,7 @@ client.getObservations(sensorId, startTime, endTime, brickScheemaSensorType )
     console.error('Error fetching observations:', error);
   });
   ```
+  Please see Brick Scheema ,eg [Energy_Usage_Sensor](https://ontology.brickschema.org/brick/Energy_Usage_Sensor.html) for how the senor type should be formatted.
 ## Environment Variables
 To keep your credentials secure, you should store them in a .env file in the root of your project. See [.env_template](./.env_template) for example
 ```
